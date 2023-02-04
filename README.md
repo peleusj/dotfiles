@@ -30,3 +30,4 @@
 - [Theprimeagen](https://github.com/ThePrimeagen/.dotfiles)
 - [craftzdog](https://github.com/craftzdog/dotfiles-public)
 - [laixintao](https://github.com/laixintao/myrc)
+- [gpg-ssh-setup](https://gist.github.com/mcattarinussi/834fc4b641ff4572018d0c665e5a94d3)
