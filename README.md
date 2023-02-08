@@ -1,3 +1,7 @@
+# My personal dotfiles
+
+<img width="1576" alt="dotfiles-screenshot" src="https://user-images.githubusercontent.com/17824110/217404173-bd1b3688-24e6-4298-adf5-9925509b0bf0.png">
+
 ## Neovim setup
 
 - [folke/lazy.nvim](https://github.com/folke/lazy.nvim) - A plugin manager for Neovim
