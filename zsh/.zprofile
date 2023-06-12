@@ -18,6 +18,9 @@ export N_PREFIX=$HOME/.n
 # https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
 # echo $PATH | tr ':' '\n'
 path=(
+  $HOME/.local/bin
+  $N_PREFIX/bin
+  # /opt/homebrew/anaconda3/bin
   /opt/homebrew/bin
   /opt/homebrew/sbin
   /opt/homebrew/opt/curl/bin
@@ -29,14 +32,12 @@ path=(
   /opt/homebrew/opt/libiconv/bin
   /opt/homebrew/opt/coreutils/libexec/gnubin
   /opt/homebrew/opt/findutils/libexec/gnubin
-  /opt/homebrew/opt/libtool/libexec/gnubin
+  # /opt/homebrew/opt/libtool/libexec/gnubin
   /opt/homebrew/opt/gnu-tar/libexec/gnubin
   /opt/homebrew/opt/gnu-sed/libexec/gnubin
   /opt/homebrew/opt/gawk/libexec/gnubin
   /opt/homebrew/opt/gnu-indent/libexec/gnubin
   /opt/homebrew/opt/grep/libexec/gnubin
-  ~/.local/bin
-  $N_PREFIX/bin
   ${path}
 )
 
