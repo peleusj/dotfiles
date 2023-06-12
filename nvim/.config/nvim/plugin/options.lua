@@ -1,5 +1,5 @@
 vim.opt.number = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -18,6 +18,7 @@ vim.opt.backup = true
 vim.opt.backupdir:remove { '.' }
 
 vim.opt.mouse = 'a'
+-- vim.opt.guicursor = ''
 
 vim.opt.wrap = false
 vim.opt.sidescrolloff = 5
@@ -35,7 +36,6 @@ vim.opt.wildignorecase = true
 
 vim.opt.updatetime = 100
 vim.opt.timeoutlen = 600
--- vim.opt.lazyredraw = true
 
 vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
 
@@ -47,10 +47,10 @@ vim.opt.splitright = true
 vim.opt.cursorline = true
 
 -- pseudo transparency for floating window
-vim.opt.winblend = 5
+vim.opt.winblend = 0
 
 -- pseudo transparency for completion menu
-vim.opt.pumblend = 10
+vim.opt.pumblend = 0
 
 -- https://github.com/neovim/neovim/pull/16251
 vim.opt.cmdheight = 0
@@ -58,19 +58,23 @@ vim.opt.cmdheight = 0
 -- https://github.com/neovim/neovim/pull/17266
 vim.opt.laststatus = 3
 
-vim.g.loaded_python_provider  = 0
-vim.g.loaded_python3_provider = 0
-vim.g.loaded_ruby_provider    = 0
-vim.g.loaded_perl_provider    = 0
-vim.g.loaded_node_provider    = 0
+-- use ':grep' to send resulsts to quickfix
+-- use ':lgrep' to send resulsts to loclist
+if vim.fn.executable('rg') == 1 then
+  vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case --hidden'
+  vim.opt.grepformat = '%f:%l:%c:%m'
+end
 
+-- set python3 properly
 if vim.loop.os_uname().sysname == 'Darwin' then
   vim.g.python3_host_prog = '/usr/local/bin/python3'
 else
   vim.g.python3_host_prog = '/usr/bin/python3'
 end
 
-if vim.fn.executable('rg') == 1 then
-  vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case --hidden'
-  vim.opt.grepformat = '%f:%l:%c:%m'
-end
+-- disable providers we do not need
+vim.g.loaded_python_provider  = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider    = 0
+vim.g.loaded_perl_provider    = 0
+vim.g.loaded_node_provider    = 0
