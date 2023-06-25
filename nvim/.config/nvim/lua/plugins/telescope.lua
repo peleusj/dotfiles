@@ -24,20 +24,20 @@ return {
             '!**/.git/*'
           },
           sorting_strategy = 'ascending',
-          layout_strategy = 'flex',
+          -- layout_strategy = 'flex',
           layout_config = {
             horizontal = {
               prompt_position = 'top',
+              preview_cutoff = 1,
+              preview_width = 0.6,
               width = 0.9,
-              preview_width = 0.55,
             },
             vertical = {
-              width = 0.9,
               preview_cutoff = 1,
-              preview_height = 0.7,
+              preview_height = 0.6,
             },
             bottom_pane = {
-              height = 10
+              height = 0.4
             }
           },
           mappings = {
