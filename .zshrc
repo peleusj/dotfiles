@@ -40,7 +40,9 @@ setopt NO_CASE_GLOB
 
 # prompt {{{
 # PROMPT='%(?.%F{green}󱦰.%F{red}󱦰)%f %F{cyan}%1~%f ' #U+f19b0
-PROMPT='%(?.%F{green}😺.%F{red}😾)%f %F{cyan}%1~%f '
+# PROMPT='%(?.%F{green}😺.%F{red}😾)%f %F{cyan}%1~%f '
+# PROMPT='%(?.%F{green}🦀.%F{red}🐞)%f %F{cyan}%1~%f '
+PROMPT='%(?.%F{green}🤗.%F{red}🤔)%f %F{cyan}%1~%f '
 
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
