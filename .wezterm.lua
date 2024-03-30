@@ -1,5 +1,5 @@
 local wezterm = require "wezterm"
-local mux = wezterm.mux
+-- local mux = wezterm.mux
 local act = wezterm.action
 
 local config = {}
@@ -8,24 +8,41 @@ if wezterm.config_builder then
     config = wezterm.config_builder()
 end
 
-config.font_size = 24
-config.font = wezterm.font_with_fallback {
-    "Iosevka Comfy",
-    "LXGW WenKai Mono"
+config.font_size = 22
+-- config.font = wezterm.font_with_fallback {
+    -- "Iosevka Comfy",
+    -- "Monaspace Neon",
+    -- "LXGW WenKai Mono"
+-- }
+
+config.window_padding = {
+    left = "0.5cell",
+    right = "0cell",
+    top = "0cell",
+    bottom = "0cell",
 }
+
+config.initial_rows = 28
+config.initial_cols = 140
+
+config.window_background_opacity = 0.88
+config.macos_window_background_blur = 30
 
 config.window_decorations = "RESIZE"
 
-wezterm.on("gui-startup", function(cmd)
-    local _, _, window = mux.spawn_window(cmd or {})
-    window:gui_window():maximize()
-end)
+-- wezterm.on("gui-startup", function(cmd)
+--     local _, _, window = mux.spawn_window(cmd or {})
+--     window:gui_window():maximize()
+-- end)
 
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.hide_tab_bar_if_only_one_tab = true
 
-config.color_scheme = "carbonfox"
+-- config.color_scheme = "carbonfox"
+-- config.color_scheme = "Flexoki Dark"
+-- config.color_scheme = "Solarized Dark - Patched"
+-- config.color_scheme = "Srcery (Gogh)"
 
 config.leader = { key = "a", mods = "CTRL" }
 
