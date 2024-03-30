@@ -1,17 +1,13 @@
 # vim:fdm=marker
 
 # PATH {{{
-if [[ $(uname) == "Darwin" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-export PATH="$HOME/.local/scripts:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 # PATH }}}
 
 # history {{{
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-HISTSIZE=50000
-SAVEHIST=40000
+HISTSIZE=100000
+SAVEHIST=50000
 
 setopt EXTENDED_HISTORY
 setopt HIST_FIND_NO_DUPS
@@ -39,16 +35,16 @@ setopt NO_CASE_GLOB
 # completion }}}
 
 # prompt {{{
-# PROMPT='%(?.%F{green}󱦰.%F{red}󱦰)%f %F{cyan}%1~%f ' #U+f19b0
-# PROMPT='%(?.%F{green}😺.%F{red}😾)%f %F{cyan}%1~%f '
-PROMPT='%(?.%F{green}🦀.%F{red}🦐)%f %F{cyan}%1~%f '
-# PROMPT='%(?.%F{green}🤗.%F{red}🤔)%f %F{cyan}%1~%f '
+# autoload -U promptinit; promptinit
+# prompt pure
 
+PROMPT='%(?.%F{green}➜.%F{red}➜)%f %F{cyan}%1~%f '
+# PROMPT='%(?.%F{green}🍜.%F{red}🍝)%f %F{cyan}%1~%f '
+#
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-# RPROMPT='${vcs_info_msg_0_}'
 PROMPT+='${vcs_info_msg_0_}'
 zstyle ':vcs_info:git:*' formats '%F{blue}%s:(%F{red}%b%F{blue})%f '
 # prompt }}}
@@ -96,3 +92,7 @@ else
 fi
 unset __conda_setup
 # conda initialize }}}
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
