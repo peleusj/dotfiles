@@ -1,97 +1,115 @@
-# vim:fdm=marker
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# PATH {{{
-export PATH="$HOME/.local/bin:$PATH"
-# PATH }}}
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-# history {{{
-HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-HISTSIZE=100000
-SAVEHIST=50000
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
-setopt EXTENDED_HISTORY
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS 
-setopt HIST_VERIFY
-setopt SHARE_HISTORY
-setopt INC_APPEND_HISTORY
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_REDUCE_BLANKS
-# history }}}
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# completion {{{
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git gpg-agent)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
 if type brew &>/dev/null
 then
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
 fi
 
-autoload -Uz compinit && compinit
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# treat `#`, `~`, and `^` as patterns for filename globbing.
-setopt EXTENDED_GLOB
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-# disable case-insensitive globbing
-setopt NO_CASE_GLOB
-# completion }}}
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-# prompt {{{
-# autoload -U promptinit; promptinit
-# prompt pure
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-PROMPT='%(?.%F{green}➜.%F{red}➜)%f %F{cyan}%1~%f '
-# PROMPT='%(?.%F{green}🍜.%F{red}🍝)%f %F{cyan}%1~%f '
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
 #
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-PROMPT+='${vcs_info_msg_0_}'
-zstyle ':vcs_info:git:*' formats '%F{blue}%s:(%F{red}%b%F{blue})%f '
-# prompt }}}
-
-# fish-like {{{
-if type brew &>/dev/null
-then
-	source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
-fi
-# fish-like }}}
-
-# gpg-agent {{{
-# See https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/gpg-agent/gpg-agent.plugin.zsh
-export GPG_TTY=$TTY
-
-# Fix for passphrase prompt on the correct tty
-# See https://www.gnupg.org/documentation/manuals/gnupg/Agent-Options.html#option-_002d_002denable_002dssh_002dsupport
-function _gpg-agent_update-tty_preexec {
-    gpg-connect-agent updatestartuptty /bye &>/dev/null
-}
-autoload -U add-zsh-hook
-add-zsh-hook preexec _gpg-agent_update-tty_preexec
-
-# If enable-ssh-support is set, fix ssh agent integration
-if [[ $(gpgconf --list-options gpg-agent 2>/dev/null | awk -F: '$1=="enable-ssh-support" {print $10}') = 1 ]]; then
-    unset SSH_AGENT_PID
-    if [[ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]]; then
-        export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-    fi
-fi
-# gpg-agent }}}
-
-# conda initialize {{{
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# conda initialize }}}
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
