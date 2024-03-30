@@ -6,21 +6,21 @@ telescope.setup({
     defaults = {
         sorting_strategy = "ascending",
         -- layout_strategy = 'flex',
-        layout_config = {
-            horizontal = {
-                -- prompt_position = "top",
-                preview_cutoff = 1,
-                preview_width = 0.6,
-                width = 0.9,
-            },
-            vertical = {
-                preview_cutoff = 1,
-                preview_height = 0.6,
-            },
-            bottom_pane = {
-                height = 0.4
-            }
-        },
+        -- layout_config = {
+        --     horizontal = {
+        --         -- prompt_position = "top",
+        --         preview_cutoff = 1,
+        --         preview_width = 0.6,
+        --         width = 0.9,
+        --     },
+        --     vertical = {
+        --         preview_cutoff = 1,
+        --         preview_height = 0.6,
+        --     },
+        --     bottom_pane = {
+        --         height = 0.4
+        --     }
+        -- },
         mappings = {
             i = {
                 ["<C-j>"] = actions.cycle_history_prev,

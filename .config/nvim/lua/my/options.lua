@@ -1,5 +1,8 @@
 vim.g.mapleader = ' '
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -39,7 +42,7 @@ vim.opt.wildignorecase = true
 vim.opt.updatetime = 100
 vim.opt.timeoutlen = 600
 
-vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
+vim.opt.clipboard:append { 'unnamedplus' }
 
 vim.opt.termguicolors = true
 
@@ -55,7 +58,7 @@ vim.opt.winblend = 0
 vim.opt.pumblend = 0
 
 -- https://github.com/neovim/neovim/pull/16251
--- vim.opt.cmdheight = 0
+vim.opt.cmdheight = 0
 
 -- https://github.com/neovim/neovim/pull/17266
 vim.opt.laststatus = 3
@@ -73,3 +76,6 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider    = 0
 vim.g.loaded_perl_provider    = 0
 vim.g.loaded_node_provider    = 0
+
+-- JoosepAlviste/nvim-ts-context-commentstring
+vim.g.skip_ts_context_commentstring_module = true

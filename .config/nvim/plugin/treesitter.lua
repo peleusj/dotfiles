@@ -1,6 +1,14 @@
 require("nvim-treesitter.configs").setup {
     ensure_installed = {
-        "lua", "python", "typescript", "rust", "go"
+        "lua",
+        "python",
+        "go",
+        "rust",
+        "typescript",
+        "sql",
+        "bash",
+        "yaml",
+        "toml"
     },
     sync_install = false,
     highlight = {
@@ -9,8 +17,4 @@ require("nvim-treesitter.configs").setup {
     indent = {
         enable = false,
     },
-    context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-    }
 }

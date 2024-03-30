@@ -46,10 +46,8 @@ require("gitsigns").setup({
     end
 })
 
--- Fugitive
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
--- YADM
 -- fugitive shortcuts for yadm
 local yadm_repo = vim.fn.expand(" $HOME/.local/share/yadm/repo.git")
 

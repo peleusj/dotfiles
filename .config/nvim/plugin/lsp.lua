@@ -65,3 +65,8 @@ require("lspconfig").lua_ls.setup {
         }
     }
 }
+
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pyright
+require'lspconfig'.pyright.setup{
+    capabilities = capabilities
+}
